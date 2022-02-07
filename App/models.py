@@ -68,7 +68,11 @@ class Candidacy(db.Model):
 
     id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'),nullable=False)
+    platform = db.Column(db.String(), nullable=False)
+    job = db.Column(db.String(), nullable=False)
     entreprise = db.Column(db.String(), nullable=False)
+    activity = db.Column(db.String(), nullable=False)
+    location = db.Column(db.String(), nullable=False)
     contact_full_name = db.Column(db.String(length=50), nullable=False)
     contact_email = db.Column(db.String(length=50), nullable=True)
     contact_mobilephone = db.Column(db.String(length=50), nullable=True)
@@ -82,26 +86,30 @@ class Candidacy(db.Model):
         return {
             'id': self.id, 
             'user_id': self.user_id, 
-            'entreprise': self.entreprise,
-            'contact_full_name': self.contact_full_name,
-            'contact_email': self.contact_email,
-            'contact_mobilephone': self.contact_mobilephone,
-            'date': self.date,
-            'status': self.status
+            'Plateforme': self.platform,
+            'Poste': self.job,
+            'Entreprise': self.entreprise,
+            "Infos complémentaires": self.activity,
+            'Lieu': self.location,
+            'Nom du contact': self.contact_full_name,
+            'Email du contact': self.contact_email,
+            'Téléphone du contact': self.contact_mobilephone,
+            'Date': self.date,
+            'Statut': self.status
             }
 
 
     @classmethod
     def find_by_user_id(cls, user_id):
         candidacy_list=[]
-        for candidacy in cls.query.filter_by(user_id=user_id).all():
-            candidacy_list.append(candidacy.json())
+        for candidacy in cls.query.filter_by(user_id=user_id).with_entities(cls.platform, cls.job, cls.entreprise, cls.activity, cls.location, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone, cls.date, cls.status ).all():
+            candidacy_list.append(candidacy)
         return candidacy_list
 
     @classmethod
     def get_all_in_list_with_user_name(cls):
         candidacy_list=[]
-        for candidacy in cls.query.join(Users).with_entities(Users.first_name,cls.entreprise, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone,cls.date,cls.status).all():
+        for candidacy in cls.query.join(Users).with_entities(Users.first_name, cls.platform, cls.job, cls.entreprise, cls.activity, cls.location, cls.contact_full_name, cls.contact_email, cls.contact_mobilephone, cls.date, cls.status).all():
             candidacy_list.append(candidacy)
         return candidacy_list
 
@@ -119,7 +127,7 @@ def init_db():
     db.create_all()
     #db.session.add( )
     Users(last_name="ben", first_name= "charles", email_address= "cb@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=True).save_to_db() 
-    Users(last_name="beniac", first_name= "cha", email_address= "bb@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=False).save_to_db()
+    Users(last_name="beaussart", first_name= "charly", email_address= "chbeaussart@gmail.com", password_hash= generate_password_hash("1234", method='sha256'), is_admin=False).save_to_db()
     Candidacy(user_id = 1, entreprise = "facebook", contact_full_name = "mz", contact_email="mz@facebook.fb").save_to_db()
     Candidacy(user_id = 1, entreprise = "google", contact_full_name = "lp", contact_email="lp@gmail.com").save_to_db()
 

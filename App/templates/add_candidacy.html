@@ -8,8 +8,24 @@
     <form method="POST" class="form-register">
         {{ form.hidden_tag() }}
 
+        {{ form.platform.label }}
+        {{ form.platform(size=32, class="form-control") }}
+        <br>
+
+        {{ form.job.label }}
+        {{ form.job(size=32, class="form-control") }}
+        <br>
+
         {{ form.entreprise.label }}
         {{ form.entreprise(size=32, class="form-control") }}
+        <br>
+
+        {{ form.activity.label }}
+        {{ form.activity(size=32, class="form-control") }}
+        <br>
+
+        {{ form.location.label }}
+        {{ form.location(size=32, class="form-control") }}
         <br>
 
         {{ form.contact_full_name.label }}
@@ -23,7 +39,6 @@
         {{ form.contact_mobilephone.label }}
         {{ form.contact_mobilephone(size=32, class="form-control") }}
         <br>  
-
 
         {{ form.submit(class="btn btn-lg btn-primary mt-4 d-block",id="button") }}
     </form>

@@ -11,18 +11,38 @@
         <form method="POST" class="form-register">
             {{ form.hidden_tag() }}
 
-            {{ form.contact_full_name.label() }}
-            {{ form.contact_full_name(value=candidacy.contact_full_name, class="form-control") }}
+            {{ form.platform.label }}
+            {{ form.platform(size=32, class="form-control") }}
             <br>
-            {{ form.contact_email.label() }}
-            {{ form.contact_email(value=candidacy.contact_email, class="form-control") }}
+    
+            {{ form.job.label }}
+            {{ form.job(size=32, class="form-control") }}
             <br>
-            {{ form.contact_mobilephone.label() }}
-            {{ form.contact_mobilephone(value=candidacy.contact_mobilephone, class="form-control") }}
+    
+            {{ form.entreprise.label }}
+            {{ form.entreprise(size=32, class="form-control") }}
             <br>
-            {{ form.status.label() }}
-            {{ form.status(value=candidacy.status, class="form-control") }}
+    
+            {{ form.activity.label }}
+            {{ form.activity(size=32, class="form-control") }}
             <br>
+    
+            {{ form.location.label }}
+            {{ form.location(size=32, class="form-control") }}
+            <br>
+    
+            {{ form.contact_full_name.label }}
+            {{ form.contact_full_name(size=32, class="form-control") }}
+            <br>
+    
+            {{ form.contact_email.label }}
+            {{ form.contact_email(size=32, class="form-control") }}
+            <br>
+    
+            {{ form.contact_mobilephone.label }}
+            {{ form.contact_mobilephone(size=32, class="form-control") }}
+            <br>  
+
             {{ form.submit(class="btn btn-lg btn-primary d-block", id="button")}}
         </form>
     </div>  

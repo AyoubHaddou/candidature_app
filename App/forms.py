@@ -14,10 +14,14 @@ class Login(FlaskForm):
 class AddCandidacy(FlaskForm):
     """[Form to add candidacy]
     """
+    platform= StringField(label='Plateforme', validators=[DataRequired()])
+    job = StringField(label='Poste', validators=[DataRequired()])
     entreprise = StringField(label='Entreprise', validators=[DataRequired()])
-    contact_full_name = StringField(label='contact_full_name', validators=[DataRequired()])
-    contact_email = StringField(label='contact_email', validators=[DataRequired()])
-    contact_mobilephone = StringField(label='contact_mobilephone')
+    activity = StringField(label="Infos complémentaires", validators=[DataRequired()])
+    location = StringField(label='Lieu', validators=[DataRequired()])
+    contact_full_name = StringField(label='Nom du contact', validators=[DataRequired()])
+    contact_email = StringField(label='Email du contact', validators=[DataRequired()])
+    contact_mobilephone = StringField(label='Téléphone du contact')
     submit = SubmitField(label='Ajouter')
 
 class ModifyProfile(FlaskForm):
@@ -31,9 +35,14 @@ class ModifyProfile(FlaskForm):
 class ModifyCandidacy(FlaskForm):
     """[form to modify candidacy]
     """
-    contact_full_name = StringField(label='contact_full_name', validators=[DataRequired()])
-    contact_email = StringField(label='contact_email', validators=[DataRequired()])
-    contact_mobilephone = StringField(label='contact_mobilephone')
+    platform= StringField(label='Plateforme', validators=[DataRequired()])
+    job = StringField(label='Poste', validators=[DataRequired()])
+    entreprise = StringField(label='Entreprise', validators=[DataRequired()])
+    activity = StringField(label="Infos complémentaires", validators=[DataRequired()])
+    location = StringField(label='Lieu', validators=[DataRequired()])
+    contact_full_name = StringField(label='Nom du contact', validators=[DataRequired()])
+    contact_email = StringField(label='Email du contact', validators=[DataRequired()])
+    contact_mobilephone = StringField(label='Téléphone du contact')
     status = StringField(label='Status', validators=[DataRequired()])
-
+    
     submit = SubmitField(label="Valider")
